@@ -1,18 +1,19 @@
-import java.util.ArrayList;
+import java.util.*;
 
-public class Aluno<Tipo1 extends Number, Tipo2> {
 
-    private Tipo1 matricula;
+public class Aluno<Tipo2> {
+
+    private int matricula;
     private Tipo2 nome;
     private ArrayList<String> cadeiras;
 
-    Aluno(Tipo1 matricula, Tipo2 nome, ArrayList<String> cadeiras){ //construtor do objeto
+    Aluno(int matricula, Tipo2 nome, ArrayList<String> cadeiras){ //construtor do objeto
         this.matricula = matricula; //this referencia o atributo da classe (atributo superior)
         this.nome = nome;
         this.cadeiras = cadeiras;
     }
 
-    public Tipo1 getMatricula() {
+    public int getMatricula() {
         return this.matricula;
     }
 
@@ -26,5 +27,12 @@ public class Aluno<Tipo1 extends Number, Tipo2> {
 
     public void ChangeNome(Tipo2 novoNome){
         this.nome = novoNome;
+    }
+    public String toString() {
+        String out = "";
+
+        out += this.nome + " " + this.matricula + " " + this.cadeiras;
+
+        return out;
     }
 }
