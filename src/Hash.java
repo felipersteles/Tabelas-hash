@@ -11,6 +11,7 @@ public class Hash<Tipo> {
     int operador; // chave/valor
     Tipo[] vetor;
     Lista<Tipo>[] lista; //lista do tipo Tipo
+    ArvoreAVL<Tipo> arvoreAVL;
 
     //Criar Tabela atraves de um construtor de classe
     Hash(int operador){
@@ -21,7 +22,19 @@ public class Hash<Tipo> {
         for (int i = 0; i < operador; i++) lista[i] = new Lista<Tipo>();
     }
 
-    void InserirValorLinear(Aluno aluno) {
+    Hash(Tipo valor){
+        if(vetor!=null){
+
+        }else {
+            System.out.println("Vetor não existe");
+            this.operador = 37;
+            vetor = (Tipo[]) new Object[this.operador];
+
+            InserirValorLinear(Tipo valor);
+        }
+    }
+
+    void InserirValorLinear(Tipo valor) {
         int chave = aluno.getMatricula() % this.operador;
 
         //converter aluno para Tipo;
@@ -29,7 +42,6 @@ public class Hash<Tipo> {
             int i = chave + 1;
 
             while (i < vetor.length) {
-
                 if (vetor[i] == null) {
                     vetor[i] = (Tipo) aluno;
                     return;
@@ -37,14 +49,26 @@ public class Hash<Tipo> {
                     i++;
                 }
             }
+
+            InserirValorListaEncadeada(Tipo valor);
         }else{
             vetor[chave] = (Tipo) aluno;
         }
     }
 
+    
     //Poderia ser um tipo Aluno em vez de "Tipo", mas nós estamos fazendo no vetor um Aluno como tipo "Tipo"
-    Tipo Buscar(int codigo){
-        return vetor[codigo % this.operador];
+    Tipo BuscarLinear(int codigo){
+        Tipo perdido;
+        
+        if(vetor[codigo % this.operador] != null){
+            perdido = vetor[codigo % this.operador]
+        }else{
+            // Buscando na lista encadeada
+            perdido = buscaNaListaEncadeada(valor);
+        }
+
+        return perdido;
     }
 
     void print(){
@@ -65,5 +89,10 @@ public class Hash<Tipo> {
         lista[chave].inserir((Tipo)aluno);
     }
 
+    void InserirValorArvoreAVL(Tipo valor){
+        arvoreAVL = new ArvoreAVL();
+
+        arvoreAVL.inserir()
+    }
 
 }

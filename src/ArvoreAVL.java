@@ -8,6 +8,10 @@
 public class ArvoreAVL<Tipo> {
     private NoAVL<Tipo> raiz;
 
+    ArvoreAVL(){
+        System.out.println("Árvore iniciada");
+    }
+
     public void inserir(int chave, Tipo k) {
         NoAVL novoNo = new NoAVL(chave, k);
         inserirAVL(this.raiz, novoNo);
@@ -44,7 +48,7 @@ public class ArvoreAVL<Tipo> {
         }
     }
 
-    public void verificarBalanceamento(NoAVL atual) {
+    private void verificarBalanceamento(NoAVL atual) {
         setBalanceamento(atual);
         int balanceamento = atual.getAltura();
 
@@ -74,7 +78,7 @@ public class ArvoreAVL<Tipo> {
         }
     }
 
-    public NoAVL rotacaoEsquerda(NoAVL inicial) {
+    private NoAVL rotacaoEsquerda(NoAVL inicial) {
 
         NoAVL direita = inicial.getDireita();
         direita.setPai(inicial.getPai());
@@ -104,7 +108,7 @@ public class ArvoreAVL<Tipo> {
         return direita;
     }
 
-    public NoAVL rotacaoDireita(NoAVL inicial) {
+    private NoAVL rotacaoDireita(NoAVL inicial) {
 
         NoAVL esquerda = inicial.getEsquerda();
         esquerda.setPai(inicial.getPai());
@@ -134,12 +138,12 @@ public class ArvoreAVL<Tipo> {
         return esquerda;
     }
 
-    public NoAVL duplaRotacaoEsquerdaDireita(NoAVL inicial) {
+    private NoAVL duplaRotacaoEsquerdaDireita(NoAVL inicial) {
         inicial.setEsquerda(rotacaoEsquerda(inicial.getEsquerda()));
         return rotacaoDireita(inicial);
     }
 
-    public NoAVL duplaRotacaoDireitaEsquerda(NoAVL inicial) {
+    private NoAVL duplaRotacaoDireitaEsquerda(NoAVL inicial) {
         inicial.setDireita(rotacaoDireita(inicial.getDireita()));
         return rotacaoEsquerda(inicial);
     }
