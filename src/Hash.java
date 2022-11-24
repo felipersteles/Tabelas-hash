@@ -70,20 +70,27 @@ public class Hash<Tipo> {
 
         Tipo perdido;
 
-        if(vetor[codigo % this.operador] != null){
-            perdido = vetor[codigo % this.operador];
 
-        }else{
-            // Buscando na lista encadeada
-            perdido = BuscarListaEncadeada(codigo);
+        Aluno aluno;
+        int chave = codigo % this.operador;
+
+        int i = chave;
+        while (i < vetor.length) {
+            aluno = (Aluno) vetor[i];
+            if (aluno.getMatricula() == codigo) {
+                perdido = (Tipo) aluno;
+                return perdido;
+            } else {
+                i++;
+            }
         }
 
+        perdido = BuscarListaEncadeada(codigo);
         return perdido;
     }
 
     Tipo BuscarListaEncadeada(int codigo){
-            return (Tipo)lista[codigo % this.operador].buscar(codigo);
-
+        return (Tipo)lista[codigo % this.operador].buscar(codigo);
     }
     void print(){
         System.out.println(this.vetor);
@@ -93,6 +100,7 @@ public class Hash<Tipo> {
         String out = "";
         for(int i = 0; i < operador; i++) {
             out += "" + i + ": ";
+            out += vetor[i % operador] + " ";
             out += lista[i % operador] + "\n";
         }
         return out;
@@ -115,7 +123,6 @@ public class Hash<Tipo> {
     }
 
 
-    public int getMatricula(Aluno aluno) {return aluno.getMatricula();
-    }
+    public int getMatricula(Aluno aluno) {return aluno.getMatricula();}
 
 }

@@ -8,8 +8,12 @@ public class Main {
         disciplinas.add("es");
 
         Aluno<String> Malti = new Aluno(1234, "Malty", disciplinas);
+        Aluno<String> Malty = new Aluno(123, "Malti", disciplinas);
         Aluno<String> Rodfode = new Aluno(4, "Rodfod", disciplinas);
         Aluno<String> canetazul = new Aluno(8, "canetazul", disciplinas);
+        Aluno<String> felipe = new Aluno(48, "felipe", disciplinas);
+        Aluno<String> teste = new Aluno(44, "alfred", disciplinas);
+        Aluno<String> mcfly = new Aluno(80, "mcfly", disciplinas);
 
 
         //Aluno<String> qualquer = criaAluno();
@@ -17,14 +21,22 @@ public class Main {
         //System.out.println("Nome do Aluno: " + qualquer.getNome()+ "\n" + "Nome da Matricula: " + qualquer.getMatricula() +"\n" + "Nome da(s) Diciplina(s): "+ qualquer.getCadeiras());
 
         Hash tabelaHash = new Hash(4);
-        /*
+
         System.out.println("Insersao Linear:\n");
         tabelaHash.InserirValorLinear(Malti);
+        tabelaHash.InserirValorLinear(mcfly);
         tabelaHash.InserirValorLinear(Rodfode);
         tabelaHash.InserirValorLinear(canetazul);
-        tabelaHash.InserirValorLinear(qualquer);
+        tabelaHash.InserirValorLinear(Malty);
+        tabelaHash.InserirValorLinear(felipe);
+        tabelaHash.InserirValorLinear(teste);
+        //tabelaHash.InserirValorLinear(qualquer);
         System.out.println(tabelaHash);
-        */
+        System.out.println();
+        System.out.println(tabelaHash.BuscarLinear(48));
+
+
+        /*
         System.out.println("Lista encadeada:\n");
         tabelaHash.InserirValorListaEncadeada(Malti);
 
@@ -32,6 +44,8 @@ public class Main {
         tabelaHash.InserirValorListaEncadeada(canetazul);
         //tabelaHash.print();
         System.out.println(tabelaHash.BuscarLinear(123));
+        */
+
 
 
 
