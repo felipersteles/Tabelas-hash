@@ -27,10 +27,11 @@ public class Main {
         */
         System.out.println("Lista encadeada:\n");
         tabelaHash.InserirValorListaEncadeada(Malti);
+
         tabelaHash.InserirValorListaEncadeada(Rodfode);
         tabelaHash.InserirValorListaEncadeada(canetazul);
         //tabelaHash.print();
-        System.out.println(tabelaHash);
+        System.out.println(tabelaHash.BuscarLinear(123));
 
 
 

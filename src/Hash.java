@@ -15,14 +15,17 @@ public class Hash<Tipo> {
 
     //Criar Tabela atraves de um construtor de classe
     Hash(int operador){
+
         this.operador = operador;
         vetor = (Tipo[]) new Object[operador];
                             //Objeto generaliza o Tipo[] para o Tipo que quisermos passar
+        //cria lista
         lista = new Lista[operador];
         for (int i = 0; i < operador; i++) lista[i] = new Lista<Tipo>();
     }
 
     Hash(Tipo valor){
+        //vetor possui valores?
         if(vetor!=null){
 
         }else {
@@ -30,12 +33,17 @@ public class Hash<Tipo> {
             this.operador = 37;
             vetor = (Tipo[]) new Object[this.operador];
 
-            InserirValorLinear(Tipo valor);
+            InserirValorLinear((Tipo)valor);
         }
     }
 
+
     void InserirValorLinear(Tipo valor) {
-        int chave = aluno.getMatricula() % this.operador;
+
+        Aluno aluno = (Aluno)valor;
+
+
+        int chave = this.getMatricula(aluno) % this.operador;
 
         //converter aluno para Tipo;
         if (vetor[chave] != null) {
@@ -50,27 +58,33 @@ public class Hash<Tipo> {
                 }
             }
 
-            InserirValorListaEncadeada(Tipo valor);
+            InserirValorListaEncadeada(aluno);
         }else{
             vetor[chave] = (Tipo) aluno;
         }
     }
 
-    
-    //Poderia ser um tipo Aluno em vez de "Tipo", mas nós estamos fazendo no vetor um Aluno como tipo "Tipo"
+
+        //Poderia ser um tipo Aluno em vez de "Tipo", mas nós estamos fazendo no vetor um Aluno como tipo "Tipo"
     Tipo BuscarLinear(int codigo){
+
         Tipo perdido;
-        
+
         if(vetor[codigo % this.operador] != null){
-            perdido = vetor[codigo % this.operador]
+            perdido = vetor[codigo % this.operador];
+
         }else{
             // Buscando na lista encadeada
-            perdido = buscaNaListaEncadeada(valor);
+            perdido = BuscarListaEncadeada(codigo);
         }
 
         return perdido;
     }
 
+    Tipo BuscarListaEncadeada(int codigo){
+            return (Tipo)lista[codigo % this.operador].buscar(codigo);
+
+    }
     void print(){
         System.out.println(this.vetor);
     }
@@ -85,14 +99,23 @@ public class Hash<Tipo> {
     }
 
     void InserirValorListaEncadeada(Aluno aluno) {
+
         int chave = aluno.getMatricula() % this.operador;
         lista[chave].inserir((Tipo)aluno);
     }
 
     void InserirValorArvoreAVL(Tipo valor){
-        arvoreAVL = new ArvoreAVL();
+        //Criando arvoreAVL para inserir
+        ArvoreAVL<Tipo> arvoreAVL = new ArvoreAVL<Tipo>();
 
-        arvoreAVL.inserir()
+        //Valor do tipo aluno que sera inserido na arvoreAVL
+        Aluno aluno = (Aluno) valor;
+
+        arvoreAVL.inserir(aluno.getMatricula(), valor);
+    }
+
+
+    public int getMatricula(Aluno aluno) {return aluno.getMatricula();
     }
 
 }
