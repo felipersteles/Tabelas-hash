@@ -15,7 +15,6 @@ public class Main {
         Aluno<String> teste = new Aluno(44, "alfred", disciplinas);
         Aluno<String> mcfly = new Aluno(80, "mcfly", disciplinas);
 
-
         //Aluno<String> qualquer = criaAluno();
 
         //System.out.println("Nome do Aluno: " + qualquer.getNome()+ "\n" + "Nome da Matricula: " + qualquer.getMatricula() +"\n" + "Nome da(s) Diciplina(s): "+ qualquer.getCadeiras());
@@ -30,29 +29,14 @@ public class Main {
         tabelaHash.InserirValorLinear(Malty);
         tabelaHash.InserirValorLinear(felipe);
         tabelaHash.InserirValorLinear(teste);
+        tabelaHash.InserirArvoreAVL(teste.getMatricula(),teste);
+
         //tabelaHash.InserirValorLinear(qualquer);
         System.out.println(tabelaHash);
         System.out.println();
         System.out.println(tabelaHash.BuscarLinear(48));
-
-
-        /*
-        System.out.println("Lista encadeada:\n");
-        tabelaHash.InserirValorListaEncadeada(Malti);
-
-        tabelaHash.InserirValorListaEncadeada(Rodfode);
-        tabelaHash.InserirValorListaEncadeada(canetazul);
-        //tabelaHash.print();
-        System.out.println(tabelaHash.BuscarLinear(123));
-        */
-
-
-
-
-
+        System.out.println(tabelaHash.BuscaArvoreAVL(teste.getMatricula()));
     }
-
-
     private static Aluno< String> criaAluno() {
         Scanner scan = new Scanner(System.in);
 

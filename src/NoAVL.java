@@ -40,6 +40,7 @@ public class NoAVL<Tipo> {
         return this.altura;
     }
 
+
     public NoAVL setEsquerda(NoAVL esquerda) {
         this.esquerda = esquerda;
         return esquerda;

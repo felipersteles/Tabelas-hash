@@ -6,6 +6,8 @@
 */
 
 public class ArvoreAVL<Tipo> {
+
+
     private NoAVL<Tipo> raiz;
 
     ArvoreAVL(){
@@ -46,6 +48,19 @@ public class ArvoreAVL<Tipo> {
                 // O nó já existe
             }
         }
+    }
+
+    public Tipo BuscaAVL( int codigo, NoAVL<Tipo> comparar ){
+        if ( codigo == comparar.getChave() ){
+            return comparar.getElemento();
+        }
+        else if(codigo < comparar.getChave() ){
+            BuscaAVL(codigo, comparar.getEsquerda());
+        }
+        else if (codigo > comparar.getChave() ){
+            BuscaAVL(codigo, comparar.getDireita());
+        }
+        return null;
     }
 
     private void verificarBalanceamento(NoAVL atual) {
@@ -194,4 +209,9 @@ public class ArvoreAVL<Tipo> {
 
         return out;
     }
+
+    public NoAVL<Tipo> getRaiz(){
+        return this.raiz;
+    }
+
 }
