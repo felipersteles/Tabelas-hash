@@ -13,6 +13,8 @@ public class Hash<Tipo> {
     Lista<Tipo>[] lista; //lista do tipo Tipo
     ArvoreAVL<Tipo>[] arvoreAVL;     //array<Tipo> de arvoreAVL
 
+    ArvoreRB<Tipo>[] arvoreRB;
+
     //Criar Tabela atraves de um construtor de classe
     Hash(int operador){
 
@@ -27,6 +29,8 @@ public class Hash<Tipo> {
         arvoreAVL = new ArvoreAVL[operador];
         // para cada posição do array cria-se um no de arvoreAVL
         for ( int i = 0; i < operador; i++) arvoreAVL[i] = new ArvoreAVL<Tipo>();
+
+        arvoreRB = new ArvoreRB[operador];
     }
 
     Hash(Tipo valor){

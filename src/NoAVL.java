@@ -13,7 +13,7 @@ public class NoAVL<Tipo> {
         this.esquerda = null;
         this.direita = null;
     }
-
+    //constutor copia
     NoAVL(int chave, Tipo el, NoAVL esq, NoAVL dir){
         this.elemento = el;
         this.esquerda = esq;

@@ -6,8 +6,6 @@
 */
 
 public class ArvoreAVL<Tipo> {
-
-
     private NoAVL<Tipo> raiz;
 
     ArvoreAVL(){
@@ -94,7 +92,7 @@ public class ArvoreAVL<Tipo> {
     }
 
     private NoAVL rotacaoEsquerda(NoAVL inicial) {
-
+        //Rotacao
         NoAVL direita = inicial.getDireita();
         direita.setPai(inicial.getPai());
 
@@ -107,11 +105,12 @@ public class ArvoreAVL<Tipo> {
         direita.setEsquerda(inicial);
         inicial.setPai(direita);
 
+        //Se exitir um pai do rotacionado
         if (direita.getPai() != null) {
-
+            //Se a sub-arvore rotacionada estiver a Direita entao
             if (direita.getPai().getDireita() == inicial) {
                 direita.getPai().setDireita(direita);
-
+            //Se o sub arvore rotacionada estiver a Esquerda
             } else if (direita.getPai().getEsquerda() == inicial) {
                 direita.getPai().setEsquerda(direita);
             }
