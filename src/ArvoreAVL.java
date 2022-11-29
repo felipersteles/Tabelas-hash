@@ -48,6 +48,19 @@ public class ArvoreAVL<Tipo> {
         }
     }
 
+    public Tipo BuscaAVL( int codigo, NoAVL<Tipo> comparar ){
+        if ( codigo == comparar.getChave() ){
+            return comparar.getElemento();
+        }
+        else if(codigo < comparar.getChave() ){
+            BuscaAVL(codigo, comparar.getEsquerda());
+        }
+        else if (codigo > comparar.getChave() ){
+            BuscaAVL(codigo, comparar.getDireita());
+        }
+        return null;
+    }
+
     private void verificarBalanceamento(NoAVL atual) {
         setBalanceamento(atual);
         int balanceamento = atual.getAltura();
@@ -79,7 +92,7 @@ public class ArvoreAVL<Tipo> {
     }
 
     private NoAVL rotacaoEsquerda(NoAVL inicial) {
-
+        //Rotacao
         NoAVL direita = inicial.getDireita();
         direita.setPai(inicial.getPai());
 
@@ -92,11 +105,12 @@ public class ArvoreAVL<Tipo> {
         direita.setEsquerda(inicial);
         inicial.setPai(direita);
 
+        //Se exitir um pai do rotacionado
         if (direita.getPai() != null) {
-
+            //Se a sub-arvore rotacionada estiver a Direita entao
             if (direita.getPai().getDireita() == inicial) {
                 direita.getPai().setDireita(direita);
-
+            //Se o sub arvore rotacionada estiver a Esquerda
             } else if (direita.getPai().getEsquerda() == inicial) {
                 direita.getPai().setEsquerda(direita);
             }
@@ -194,4 +208,9 @@ public class ArvoreAVL<Tipo> {
 
         return out;
     }
+
+    public NoAVL<Tipo> getRaiz(){
+        return this.raiz;
+    }
+
 }

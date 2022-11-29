@@ -11,7 +11,9 @@ public class Hash<Tipo> {
     int operador; // chave/valor
     Tipo[] vetor;
     Lista<Tipo>[] lista; //lista do tipo Tipo
-    ArvoreAVL<Tipo> arvoreAVL;
+    ArvoreAVL<Tipo>[] arvoreAVL;     //array<Tipo> de arvoreAVL
+
+    ArvoreRB<Tipo>[] arvoreRB;
 
     //Criar Tabela atraves de um construtor de classe
     Hash(int operador){
@@ -22,6 +24,13 @@ public class Hash<Tipo> {
         //cria lista
         lista = new Lista[operador];
         for (int i = 0; i < operador; i++) lista[i] = new Lista<Tipo>();
+
+        //criar arvoreAvl
+        arvoreAVL = new ArvoreAVL[operador];
+        // para cada posição do array cria-se um no de arvoreAVL
+        for ( int i = 0; i < operador; i++) arvoreAVL[i] = new ArvoreAVL<Tipo>();
+
+        arvoreRB = new ArvoreRB[operador];
     }
 
     Hash(Tipo valor){
@@ -36,7 +45,6 @@ public class Hash<Tipo> {
             InserirValorLinear((Tipo)valor);
         }
     }
-
 
     void InserirValorLinear(Tipo valor) {
 
@@ -57,19 +65,16 @@ public class Hash<Tipo> {
                     i++;
                 }
             }
-
             InserirValorListaEncadeada(aluno);
         }else{
             vetor[chave] = (Tipo) aluno;
         }
     }
 
-
-        //Poderia ser um tipo Aluno em vez de "Tipo", mas nós estamos fazendo no vetor um Aluno como tipo "Tipo"
+    //Poderia ser um tipo Aluno em vez de "Tipo", mas nós estamos fazendo no vetor um Aluno como tipo "Tipo"
     Tipo BuscarLinear(int codigo){
 
         Tipo perdido;
-
 
         Aluno aluno;
         int chave = codigo % this.operador;
@@ -84,9 +89,20 @@ public class Hash<Tipo> {
                 i++;
             }
         }
-
         perdido = BuscarListaEncadeada(codigo);
+        if(perdido == null){
+            perdido = BuscaArvoreAVL(codigo);
+        }
         return perdido;
+    }
+
+    public void InserirArvoreAVL(int codigo, Tipo novo){
+        arvoreAVL[ codigo%operador ].inserir(codigo,novo);
+    }
+
+    Tipo BuscaArvoreAVL(int codigo){
+        NoAVL<Tipo> raiz = arvoreAVL[codigo%operador].getRaiz();
+        return arvoreAVL[codigo%operador].BuscaAVL( codigo, raiz );
     }
 
     Tipo BuscarListaEncadeada(int codigo){
